@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial;
+        }
+
+
+
+        /* Style the tab */
+
+        .tab {
+            overflow: hidden;
+            border: 10px solid #3f4a7a;
+            background-color: #33335f;
+        }
+
+
+
+            /* Style the buttons inside the tab */
+
+            .tab button {
+                background-color: #161650;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 14px 16px;
+                transition: 0.5s;
+                font-size: 30px;
+            }
+
+
+
+                /* Change background color of buttons on hover */
+
+                .tab button:hover {
+                    background-color: #42074e;
+                }
+
+
+
+                /* Create an active/current tablink class */
+
+                .tab button.active {
+                    background-color: #230a47;
+                }
+
+
+
+        /* Style the tab content */
+
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            -webkit-animation: fadeEffect 3s;
+            animation: fadeEffect 3s;
+        }
+
+
+
+        /* Fade in tabs */
+
+        @-webkit-keyframes fadeEffect {
+
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+
+
+        @keyframes fadeEffect {
+
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+
+
+
+            #mr {
+                color: red;
+                font-size: 50px;
+                font-family: blippo,fantasy;
+                text-shadow: 2px 3px 5px blue;
+            }
+
+
+
+    </style>
+
+
+</head>
+
+<body style="background-image:url('https://www.bing.com/images/search?view=detailV2&ccid=lm85SA7w&id=12CA60E0CBACCD953581022A8C9F67D7756CE248&thid=OIP.lm85SA7w28D5FNMX_DeLtgHaNK&mediaurl=http%3a%2f%2fstatic.tumblr.com%2f382857c19a1f78c94a0898a9e64d0ef8%2fzkbbgv8%2fYtgn9lxrk%2ftumblr_static_e2c28x79ijccg480408co000w.jpg&exph=1920&expw=1080&q=galaxy+background&simid=607995508563709631&selectedIndex=1&ajaxhist=0');">
+
+
+
+
+
+    <div class="tab">
+
+        <button class="tablinks" onclick="openCity(event, 'Home')">Home</button>
+
+        <button class="tablinks" onclick="openCity(event, 'Contact')">Contact</button>
+
+        <button class="tablinks" onclick="openCity(event, 'Clips')">Clips</button>
+
+    </div>
+
+    <center>
+
+        <marquee id="mr"<h1>Welcome to Clippsy, developed by Luc Stefano!</h1>
+
+    <h3>This webpage is still in development, so come back soon!</h3></marquee>
+
+        <h4>Credits to:</h4>
+
+    </center>
+
+
+
+    <div id="Home" class="tabcontent">
+        <a href="https://discord.gg/HZcwD7n">Our discord</a>
+
+        <h2>Welcome</h2>
+
+        <p><B>Work in progess</B></p>
+
+        <p>Hi, I am Luc the former developer of Clippsy and here you read what Clippsy is all about!</p>
+
+        <p><B> Have you ever wanted to post a clip of something cool you did in a game like Fortnite, PUBG, Call of duty or Grand Theft Auto 5 ( ANY GAME!</B>)?Well thanks to me I took the time to develop 'Clippsy', I started developing Clippsy at the age of <i>14</i>!(On the day:2018/08/31 I officially started its development)</p>
+
+    </div>
+
+
+
+    <div id="Contact" class="tabcontent">
+
+        <h3>Contact us. :D</h3>
+
+        <p><B>Here</B><u> is our contact information!</u></p>
+
+        <table>
+
+            <tr><td>Hello</tr></td>
+
+
+
+        </table>
+
+    </div>
+
+
+
+    <div id="Clips" class="tabcontent">
+
+        <h3>Clippssssssssssssssssss!</h3>
+
+        <p>We post our clips <b>HERE</b></p>
+
+        <?php
+
+        //create a database demo
+
+
+
+
+
+        ?>
+
+        <?php
+
+        CREATE DATABASE `demo`;
+
+        USE demo;
+
+
+
+        //create a table textarea
+
+        CREATE TABLE `video`
+
+        (
+
+        `v_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+
+        `video_name` varchar(255) not null
+
+        )
+
+
+
+        error_reporting(1);
+
+
+
+        $con=mysql_connect("localhost","root","");
+
+
+
+        mysql_select_db("demo",$con);
+
+
+
+        extract($_POST);
+
+
+
+        $target_dir = "test_upload/";
+
+
+
+        $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+
+
+
+        if($upd)
+
+        {
+
+        $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+
+
+
+        if($imageFileType != "mp4" && $imageFileType != "avi" && $imageFileType != "mov" && $imageFileType != "3gp" && $imageFileType != "mpeg")
+
+        {
+
+        echo "File Format Not Suppoted";
+
+        }
+
+
+
+        else
+
+        {
+
+
+
+        $video_path=$_FILES['fileToUpload']['name'];
+
+
+
+        mysql_query("insert into video(video_name) values('$video_path')");
+
+
+
+        move_uploaded_file($_FILES["fileToUpload"]["tmp_name"],$target_file);
+
+
+
+        echo "uploaded ";
+
+
+
+        }
+
+
+
+        }
+
+
+
+        //display all uploaded video
+
+
+
+        if($disp)
+
+
+
+        {
+
+
+
+        $query=mysql_query("select * from video");
+
+
+
+        while($all_video=mysql_fetch_array($query))
+
+
+
+        {
+
+        ?>
+
+
+
+        <video width="300" height="200" controls>
+
+            <source src="test_upload/<?php echo $all_video['video_name']; ?>" type="video/mp4">
+
+        </video>
+
+
+
+        <?php } } ?>
+
+        <form method="post" enctype="multipart/form-data">
+
+
+
+            <table border="1" style="padding:10px">
+
+
+
+                <tr>
+
+
+
+                    <Td>Upload  Video</Td>
+                </tr>
+
+
+
+                <Tr><td><input type="file" name="fileToUpload" /></td></Tr>
+
+
+
+                <tr>
+                    <td>
+
+
+
+                        <input type="submit" value="Upload Video" name="upd" />
+
+
+
+                        <input type="submit" value="Display Video" name="disp" />
+
+
+
+                    </td>
+                </tr>
+
+
+
+            </table>
+
+
+
+        </form>
+
+    </div>
+
+
+
+    <script>
+
+function openCity(evt, cityName) {
+
+    var i, tabcontent, tablinks;
+
+    tabcontent = document.getElementsByClassName("tabcontent");
+
+    for (i = 0; i < tabcontent.length; i++) {
+
+        tabcontent[i].style.display = "none";
+
+    }
+
+    tablinks = document.getElementsByClassName("tablinks");
+
+    for (i = 0; i < tablinks.length; i++) {
+
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+
+    }
+
+    document.getElementById(cityName).style.display = "block";
+
+    evt.currentTarget.className += " active";
+
+}
+
+    </script>
+
+
+
+</body>
+
+</html> 
